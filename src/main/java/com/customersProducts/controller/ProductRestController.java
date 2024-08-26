@@ -2,7 +2,6 @@ package com.customersProducts.controller;
 
 import com.customersProducts.dto.ProductDto;
 import com.customersProducts.dto.ProductResponse;
-import com.customersProducts.exception.SystemException;
 import com.customersProducts.service.ProductService;
 import com.customersProducts.utils.AppConstants;
 import io.swagger.v3.oas.annotations.Operation;
@@ -27,8 +26,8 @@ public class ProductRestController {
 
     @PostMapping(value = "/create")
     @Operation(
-            summary = "Create Customer REST API",
-            description = "Create Customer REST API is used to save customer into database"
+            summary = "Create Product REST API",
+            description = "Create Product REST API is used to save product into database"
     )
     @ApiResponse(
             responseCode = "201",
@@ -41,8 +40,8 @@ public class ProductRestController {
 
     @PutMapping(value = "/update/{bookId}")
     @Operation(
-            summary = "Update Customer REST API",
-            description = "Update Customer REST API is used to update customer into database"
+            summary = "Update Product REST API",
+            description = "Update Product REST API is used to update product into database"
     )
     @ApiResponse(
             responseCode = "200",

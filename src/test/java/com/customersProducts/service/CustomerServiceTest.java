@@ -7,12 +7,10 @@ import com.customersProducts.exception.SystemErrorCode;
 import com.customersProducts.exception.SystemException;
 import com.customersProducts.mapper.CustomerMapper;
 import com.customersProducts.repository.CustomerRepository;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.data.domain.*;
 
