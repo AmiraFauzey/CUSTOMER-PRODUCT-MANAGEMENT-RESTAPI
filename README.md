@@ -55,9 +55,9 @@ spring.jpa.hibernate.ddl-auto=update
      * **Choose Version Control System**: In the window that pops up, select "Git" from the list of version control options.
      * **Enter Repository URL**: In the URL field, paste the repository URL:
         ```https://github.com/AmiraFauzey/CUSTOMER-PRODUCT-MANAGEMENT-RESTAPI.git```
-     * **Select Directory**: In the Directory field, choose the local directory where you want to clone the project by clicking the folder icon and navigating to your desired location.
+     * **Select Directory**: In the Directory field, choose the local directory to clone the project by clicking the folder icon and navigating to your desired location.
      * **Clone the Repository**: Click the "Clone" button to start cloning the repository to your selected directory.
-     * **Open the Project**:  Once the cloning process is complete, IntelliJ IDEA will automatically open the project in a new window.
+     * **Open the Project**:  Once the cloning process is completed, IntelliJ IDEA will automatically open the project in a new window.
 6. **Run the Application**
      * **Open the CustomerProductManagementApplication Class**: In your project, navigate to the class named **CustomerProductManagementApplication**. This class should be annotated with @SpringBootApplication.
      * **Run the Application**: Once you have the class open, click the green play button (►) located next to the class name or main method to run the application.
