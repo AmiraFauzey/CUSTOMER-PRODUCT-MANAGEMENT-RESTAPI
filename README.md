@@ -38,6 +38,43 @@ spring.datasource.password=password
 spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQLDialect
 spring.jpa.hibernate.ddl-auto=update
 ```
+**Redis Configuration**
+1. **Add Dependencies** <br>
+     Add the following dependencies to `pom.xml` file to include Redis support in Spring Boot project:
+     ```
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-redis</artifactId>
+        <version>3.3.3</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-cache</artifactId>
+        <version>3.3.3</version>
+      </dependency>
+      <dependency>
+        <groupId>redis.clients</groupId>
+        <artifactId>jedis</artifactId>
+        <version>5.1.5</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>2.14.0</version>
+      </dependency>
+     ```
+2. **Configure Redis in `application.properties`**<br>
+    Add the following Redis configuration settings to `application.properties` file:
+    ```
+    # Redis Server Configuration
+    spring.redis.host=127.0.0.1     # Redis server host (default: localhost)
+    spring.redis.port=6379          # Redis server port (default: 6379)
+    ```
+4. **Download and Install Redis**<br>
+    To run Redis locally:<br>
+       a)**Download the Redis zip file** from the [Redis download github](https://github.com/microsoftarchive/redis/releases/tag/win-3.2.100) website.<br>
+       b)**Extract the downloaded zip file** to a directory on the computer.<br>
+       c)**Run Redis Server**: Locate the redis-server executable in the extracted files and run it to start the Redis server.
 
 **Project Setup**
 1. **Prerequisites**
