@@ -10,6 +10,9 @@ import com.customersProducts.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -31,6 +34,7 @@ public class CustomerService {
 
     /*To create customer*/
     @Transactional(rollbackFor = Exception.class)
+    @CachePut(value = "customers", key = "#result.customerId")
     public CustomerDto createCustomer(CustomerDto dto){
         Customer customer = customerMapper.customerDTOToCustomer(dto);
         Customer savedCustomer = customerRepository.save(customer);
@@ -40,6 +44,7 @@ public class CustomerService {
 
     /*To update customer*/
     @Transactional(rollbackFor = Exception.class)
+    @CachePut(value = "customers", key = "#customerId")
     public CustomerDto updateCustomer(CustomerDto dto, Integer customerId) throws SystemException{
 
         Customer customer = customerRepository.findById(customerId)
@@ -60,8 +65,11 @@ public class CustomerService {
 
     /*To view customer*/
     @Transactional(readOnly = true)
+    @Cacheable(value = "customers", key = "#customerId")
     public CustomerDto getCustomerById(Integer customerId) throws SystemException {
+        log.info("Fetching customer with ID: {}", customerId);
         Customer customer = customerRepository.findById(customerId).orElseThrow(()-> new SystemException(SystemErrorCode.CUSTOMER_NOT_FOUND));
+        log.info("Fetched customer: {}", customer);
         return customerMapper.customerToCustomerDTO(customer);
     }
 
@@ -88,6 +96,7 @@ public class CustomerService {
     }
 
     /*To delete customer*/
+    @CacheEvict(value = "customers", key = "#customerId")
     public void deleteCustomerById(Integer customerId) {
         // get customer by id from the database
         Customer customer = customerRepository.findById(customerId).orElseThrow(() -> new SystemException(SystemErrorCode.CUSTOMER_NOT_FOUND));

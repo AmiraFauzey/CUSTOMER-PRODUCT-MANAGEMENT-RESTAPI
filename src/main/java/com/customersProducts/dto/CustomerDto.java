@@ -4,13 +4,14 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.*;
 import lombok.*;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 @Data
 @Schema(
         description = "CustomerDto Model Information"
 )
-public class CustomerDto {
+public class CustomerDto implements Serializable {
 
     private Integer customerId;
 

@@ -5,6 +5,7 @@ import jakarta.persistence.Column;
 import jakarta.validation.constraints.*;
 import lombok.*;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
@@ -12,7 +13,7 @@ import java.sql.Timestamp;
 @Schema(
         description = "ProductDto Model Information"
 )
-public class ProductDto {
+public class ProductDto implements Serializable {
 
     private Integer bookId;
 

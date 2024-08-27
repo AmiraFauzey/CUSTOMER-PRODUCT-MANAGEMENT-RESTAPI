@@ -10,6 +10,9 @@ import com.customersProducts.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -31,6 +34,7 @@ public class ProductService {
 
     /*To create Product*/
     @Transactional(rollbackFor = Exception.class)
+    @CachePut(value = "products", key = "#result.bookId")
     public ProductDto createProduct(ProductDto dto){
         Product product = productMapper.productDTOToProduct(dto);
         Product savedProduct = productRepository.save(product);
@@ -40,6 +44,7 @@ public class ProductService {
 
     /*To update product*/
     @Transactional(rollbackFor = Exception.class)
+    @CachePut(value = "products", key = "#bookId")
     public ProductDto updateProduct(ProductDto dto, Integer bookId) throws SystemException {
 
         Product product = productRepository.findById(bookId)
@@ -56,6 +61,7 @@ public class ProductService {
 
     /*To view product*/
     @Transactional(readOnly = true)
+    @Cacheable(value = "products", key = "#bookId")
     public ProductDto getProductById(Integer bookId) throws SystemException {
         Product product = productRepository.findById(bookId).orElseThrow(()-> new SystemException(SystemErrorCode.PRODUCT_NOT_FOUND));
         return productMapper.productToProductDTO(product);
@@ -84,6 +90,7 @@ public class ProductService {
     }
 
     /*To delete Product*/
+    @CacheEvict(value = "products", key = "#bookId")
     public void deleteProductById(Integer bookId) {
         // get Product by id from the database
         Product product = productRepository.findById(bookId).orElseThrow(() -> new SystemException(SystemErrorCode.PRODUCT_NOT_FOUND));
