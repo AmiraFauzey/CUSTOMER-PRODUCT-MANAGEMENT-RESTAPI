@@ -111,7 +111,7 @@ spring.jpa.hibernate.ddl-auto=update
             3. It will give message **Customer deleted successfully.**
       
 9. You can also view logging to view API Request body and Response body
-    ![Alt text](C:\Users\Hp\OneDrive\Desktop/ResponseAndRequestBody.jpg)       
+    ![Response-request-body](images/ResponseAndRequestBody.jpg)     
             
        
 
